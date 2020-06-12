@@ -2,8 +2,56 @@ package fr.univ_amu.iut.ihm;
 
 import fr.univ_amu.iut.utilitaires.Analyseur;
 import fr.univ_amu.iut.utilitaires.ErreurDeSyntaxe;
+import fr.univ_amu.iut.utilitaires.Expression;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class TraceurDeFonction {
+
+  public static void main(String[] args) {
+    Stage stage = new Stage();
+    BorderPane root = new BorderPane();
+    Scene scene = new Scene(root);
+
+    stage.setTitle("Traceur de fonction");
+
+    stage.setWidth(600);
+    stage.setHeight(650);
+
+    stage.setResizable(false);
+
+    TextField textField = new TextField("exp(-x * 0.2) * sin(x)");
+
+
+    Button anl = new Button("Analyser");
+
+    Expression val = new Expression();
+    anl.setOnAction(actionEvent -> { val = analyser(textField.getText()); }); // analyser est une fonction
+
+    Label labelText = new Label("Expression analysée : f(x) = ");
+    labelText.setText("Expression analysée : f(x) = " + val);
+
+    NumberAxis x = new NumberAxis();
+    NumberAxis y = new NumberAxis();
+    x.setAutoRanging(true);
+    y.setAutoRanging(true);
+
+
+    root.setCenter(textField);
+    root.setBottom(labelText);
+
+    root.setCenter(x);
+    root.setCenter(y);
+
+    stage.show();
+  }
 
   void calculCoeffTransformationsAffines() {
   }

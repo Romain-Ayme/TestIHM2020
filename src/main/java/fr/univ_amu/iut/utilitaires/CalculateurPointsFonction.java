@@ -2,7 +2,17 @@ package fr.univ_amu.iut.utilitaires;
 
 import java.util.ArrayList;
 
+
+
 public class CalculateurPointsFonction {
+
+  public static void main(String[] args) {
+    String Str = "exp(-x * 0.2) * sin(x)";
+
+    Analyseur anl = new Analyseur(Str);
+    Expression exp = anl.analyser();
+    System.out.println(exp);
+  }
 
   private static final int nombrePas = 1000;
 
